@@ -1,4 +1,8 @@
 var currentThread = 0;
+var delay = 5000;
+var altDelay = 50;
+var fadeTime = 3000;
+var us = [];
 
 function setup() {
     pulse(currentThread); 
@@ -7,16 +11,25 @@ function setup() {
     $('#speedSwitch').change(function() {
         changeSpeed();
     });
+    
+    $.ajax({
+        url: 'img/us/us.json',
+        dataType: "json",
+        success: loadUs
+    });
 }
+
+function loadUs(us_raw) {
+    us = us_raw.us;
+}
+
+// Background and UI
 
 function showMain() {
     $('#title').fadeOut(fadeTime);
     $('#controlPanel').fadeIn(fadeTime);
+    $('#graph').fadeIn(fadeTime);
 }
-
-var delay = 5000;
-var altDelay = 50;
-var fadeTime = 3000;
 
 function pulse(myThreadNumber) {
     if (myThreadNumber != currentThread)
@@ -36,3 +49,6 @@ function changeSpeed() {
     currentThread++;
     pulse(currentThread);
 }
+
+// D3
+
