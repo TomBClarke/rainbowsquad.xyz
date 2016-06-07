@@ -3,57 +3,57 @@
       {  
          "name":"Cam",
          "colour":"white",
-         "img":"cam.png"
+         "img":"cam.jpg"
       },
       {  
          "name":"Seb",
          "colour":"pink",
-         "img":"seb.png"
+         "img":"seb.jpg"
       },
       {  
          "name":"Tom",
          "colour":"red",
-         "img":"tom.png"
+         "img":"tom.jpg"
       },
       {  
          "name":"Ben D",
          "colour":"orange",
-         "img":"bend.png"
+         "img":"bend.jpg"
       },
       {  
          "name":"Hung",
          "colour":"yellow",
-         "img":"hung.png"
+         "img":"hung.jpg"
       },
       {  
          "name":"Meg",
          "colour":"gold",
-         "img":"meg.png"
+         "img":"meg.jpg"
       },
       {  
          "name":"Rowan",
          "colour":"green",
-         "img":"row.png"
+         "img":"row.jpg"
       },
       {  
          "name":"Kyle",
          "colour":"royalblue",
-         "img":"kyle.png"
+         "img":"kyle.jpg"
       },
       {  
          "name":"Ben S",
          "colour":"navy",
-         "img":"bens.png"
+         "img":"bens.jpg"
       },
       {  
          "name":"Mike",
          "colour":"brown",
-         "img":"mike.png"
+         "img":"mike.jpg"
       },
       {  
          "name":"Theo",
          "colour":"black",
-         "img":"theo.png"
+         "img":"theo.jpg"
       }
    ]
 }
