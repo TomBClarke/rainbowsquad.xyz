@@ -23,7 +23,7 @@
         <link type="text/css" rel="stylesheet" href="css/main.css"/>
         <link rel="icon" href="img/favicon.png">
     </head>
-    <body onload="pulse(); setTimeout(showMain, 7000);">
+    <body onload="pulse(); setTimeout(showMain, 5000);">
         <div id="title">
             <h1>Welcome to the Rainbow Squadron!</h1>
         </div>

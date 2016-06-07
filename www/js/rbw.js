@@ -1,7 +1,7 @@
 // The background bit:
 
 var delay = 5000;
-var altDelay = 500;
+var altDelay = 50;
 var fadeTime = 3000;
 var isFast = false;
 
