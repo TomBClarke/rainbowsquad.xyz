@@ -23,9 +23,16 @@
         <link type="text/css" rel="stylesheet" href="css/main.css"/>
         <link rel="icon" href="img/favicon.png">
     </head>
-    <body>
-        <div id="main">
+    <body onload="pulse(); setTimeout(showMain, 7000);">
+        <div id="title">
             <h1>Welcome to the Rainbow Squadron!</h1>
+        </div>
+        <div id="controlPanel">
+            Fast mode: </br>
+            <label class="switch">
+                <input id="speedSwitch" type="checkbox">
+                <div class="slider"></div>
+            </label>
         </div>
     </body>
 </html>
