@@ -25,9 +25,8 @@
     </head>
     <body onload="setup();">
         <div id="title">
-            <h1>Welcome to the Rainbow Squadron!</h1>
+            <h1>Welcome to the Rainbow Squadron</h1>
         </div>
-        
         <div id="graph"></div>
         <div id="controlPanel">
             Fast mode: <br/>
