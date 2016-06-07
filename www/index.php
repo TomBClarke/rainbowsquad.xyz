@@ -8,19 +8,20 @@
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="Taste the rainbow!" />
         <meta property="og:description"   content="Taste the rainbow!" />
-        <meta property="og:image"         content="http://rainbowsquad.xyz/favicon.png" />
+        <meta property="og:image"         content="http://rainbowsquad.xyz/img/favicon.png" />
         <meta name="url"                  content="http://rainbowsquad.xyz/" />
         <meta name="type"                 content="website" />
         <meta name="title"                content="Rainbow Squadron" />
         <meta name="description"          content="Taste the rainbow!" />
-        <meta name="image"                content="http://rainbowsquad.xyz/favicon.png" />
+        <meta name="image"                content="http://rainbowsquad.xyz/img/favicon.png" />
         <meta name="keywords"             content="rainbow, rbw, squad, squadron">
         <title>Rainbow Squadron</title>
-        <script src="jquery.js"></script>
-        <script src="jquery-ui.js"></script>
-        <script src="rbw.js"></script>
-        <link type="text/css" rel="stylesheet" href="main.css"/>
-        <link rel="icon" href="favicon.png">
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/d3.js"></script>
+        <script src="js/rbw.js"></script>
+        <link type="text/css" rel="stylesheet" href="css/main.css"/>
+        <link rel="icon" href="img/favicon.png">
     </head>
     <body>
         <div id="main">
