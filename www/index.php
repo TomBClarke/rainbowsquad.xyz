@@ -34,7 +34,7 @@
                         header("Location: https://socialclub.rockstargames.com/crew/the_rainbow_squadron");
                         break;
                     case "quiz":
-                        header("Location: http://rainbowsquad.xyz");
+                        header("Location: https://docs.google.com/forms/u/0/d/1PaHwVW0QNd14TPbr6rnCf1-YayzRLXjU5HMcqyPaVXc/");
                         break;
                 }
             }
