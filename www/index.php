@@ -24,6 +24,22 @@
         <link rel="icon" href="img/rbw.png">
     </head>
     <body onload="setup();">
+        <?php 
+            if(isset($_GET["go"])) {
+                switch ($_GET["go"]) {
+                    case "steam":
+                        header("Location: http://steamcommunity.com/groups/Rainbow-Squadron");
+                        break;
+                    case "gta":
+                        header("Location: https://socialclub.rockstargames.com/crew/the_rainbow_squadron");
+                        break;
+                    case "quiz":
+                        header("Location: http://rainbowsquad.xyz");
+                        break;
+                }
+            }
+        ?>
+        
         <div id="title">
             <h1>Welcome to the Rainbow Squadron</h1>
         </div>

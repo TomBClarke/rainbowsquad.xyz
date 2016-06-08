@@ -61,9 +61,7 @@ var radius = 100;
 var color = d3.scale.category20b();
 
 function loadGraph() {
-    // need to set up nodes.
-    // maybe
-    node = us;
+    // set up nodes
     
     force = d3.layout.force().charge(-100).size([width, height]);
     var svg = d3.select('#graph').append('svg');
@@ -92,15 +90,6 @@ function loadGraph() {
         .text(function(d) { return d.name; });
     
     force.on('tick', tick);
-}
-
-function snapToXBounds(d) {
-    var posX = d.x;
-    var k = 0.1;
-    var svgHeight = parseFloat(d3.select("svg").style("height"));
-    var actual = (mmWidths.getScaledValue(d.c2 / (d.c1 + d.c2)) * 0.8 + 0.1) * width;
-    dif = actual - posX;
-    return posX += dif * k;
 }
 
 function collide(node) {
@@ -145,10 +134,6 @@ function tick(e) {
     d3.selectAll("text")
         .attr("x", function(d) { return d.x; })
         .attr("y", function(d) { return d.y; });
-
-    nodes.forEach(function(d) {
-        d.x = snapToXBounds(d);
-    });
 }
 
 function boundPosition(value, min, max) {
