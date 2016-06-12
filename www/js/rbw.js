@@ -1,30 +1,37 @@
-var currentThread = 0;
+// Setup
+
+var delayStart = 0;
 var delay = 5000;
 var altDelay = 50;
 var fadeTime = 3000;
 var us = [];
+var headsOn = false;
 
 function setup() {
     pulse(currentThread); 
-    setTimeout(showMain, 5000);
+    setTimeout(showMain, delayStart);
     
     $('#speedSwitch').change(function() {
         changeSpeed();
     });
     
+    $('#headSwitch').change(function() {
+        toggleHeads();
+    });
+    
     $.ajax({
         url: 'img/us/us.json',
-        dataType: "json",
-        success: loadUs
+        dataType: 'json',
+        success: function (us_raw) {
+            us = us_raw.us;
+            // loadGraph();
+        }
     });
 }
 
-function loadUs(us_raw) {
-    us = us_raw.us;
-    loadGraph();
-}
-
 // Background and UI
+
+var currentThread = 0;
 
 function showMain() {
     $('#title').fadeOut(fadeTime);
@@ -49,6 +56,20 @@ function changeSpeed() {
     $('body').stop();
     currentThread++;
     pulse(currentThread);
+    
+    var tempSlowness = slowness;
+    slowness = altSlowness;
+    altSlowness = tempSlowness;
+}
+
+function toggleHeads() {
+    if (headsOn) {
+        $('#graph').empty();
+    } else {
+        loadGraph();
+    }
+    
+    headsOn = !headsOn;
 }
 
 // D3
@@ -57,43 +78,57 @@ var nodes = [];
 var force;
 var height = window.innerHeight;
 var width = window.innerWidth;
-var radius = 100;
+var radius = Math.min(height / 10, width / 10);
+var circleEdgeWidth = radius / 5;
 var color = d3.scale.category20b();
+var pathToPics = 'img/us/';
+var slowness = 5000;
+var altSlowness = 100;
 
 function loadGraph() {
-    // set up nodes
+    nodes = us;
     
-    force = d3.layout.force().charge(-100).size([width, height]);
+    force = d3.layout.force().gravity(0.01).charge(-30).size([width, height]);
     var svg = d3.select('#graph').append('svg');
     force.nodes(nodes).start();
     
-    var node = svg.select('.node')
+    var node = svg.selectAll('.node')
         .data(nodes)
         .enter()
         .append('g')
         .attr('class', 'gnode');
     
+    var defs = svg.append('defs').attr('id', 'imgdefs')
+
+    us.forEach(function (i) {
+        var pattern = defs.append('pattern')
+            .attr('id', 'pattern-' + i.colour)
+            .attr('height', 1)
+            .attr('width', 1)
+            .attr('x', 0)
+            .attr('y', 0);
+    
+        pattern.append('image')
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('height', radius * 2)
+            .attr('width', radius * 2)
+            .attr('xlink:href', pathToPics + i.img);
+    });
+    
     var circle = node.append('circle')
         .attr('class', 'node')
         .attr('r', radius)
-        .attr('xlink:href', function(d) { return d.img; })
+        .attr('fill', function(d) { return 'url(#pattern-' + d.colour + ')'; })
         .style('stroke', function(d) { return d.colour; })
-        .style('stoke-width', '10px')
+        .style('stroke-width', circleEdgeWidth)
         .call(force.drag);
-    
-    var labels = node.append('text')
-        .attr('class', 'unselectable')
-        .attr('dy', '.35em')
-        .style('font-size', '1em')
-        .style('color', 'white')
-        .style('text=anchpr', 'middle')
-        .text(function(d) { return d.name; });
     
     force.on('tick', tick);
 }
 
 function collide(node) {
-    var r = radius + 10,
+    var r = radius + circleEdgeWidth,
         nx1 = node.x - r,
         nx2 = node.x + r,
         ny1 = node.y - r,
@@ -103,15 +138,16 @@ function collide(node) {
             var x = node.x - quad.point.x,
                 y = node.y - quad.point.y,
                 l = Math.sqrt(x * x + y * y),
-                r = getRadius(node) + getRadius(quad.point);
+                r = radius * 2 + circleEdgeWidth;
             if (l < r) {
-                l = (l - r) / l * .5;
+                l = (l - r) / l * 0.5;
                 node.x -= x *= l;
                 node.y -= y *= l;
                 quad.point.x += x;
                 quad.point.y += y;
             }
         }
+        
         return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
     };
 }
@@ -128,12 +164,11 @@ function tick(e) {
         nodes[i].y = boundPosition(nodes[i].y, 0, height);
     }
 
-    d3.selectAll("circle")
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-    d3.selectAll("text")
-        .attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y; });
+    d3.selectAll('circle').transition().ease('linear').duration(slowness)
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+    
+    force.nodes(nodes).start();
 }
 
 function boundPosition(value, min, max) {
