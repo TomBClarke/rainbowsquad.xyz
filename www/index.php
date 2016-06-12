@@ -46,12 +46,12 @@
             <label class="switch">
                 <input id="speedSwitch" type="checkbox">
                 <div class="slider"></div>
-            </label>
+            </label><br/>
             Show heads: <br/>
             <label class="switch">
                 <input id="headSwitch" type="checkbox">
                 <div class="slider"></div>
-            </label><br/>
+            </label>
         </div>
     </body>
 </html>
