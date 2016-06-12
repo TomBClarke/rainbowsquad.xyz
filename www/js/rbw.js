@@ -1,6 +1,6 @@
 // Setup
 
-var delayStart = 0;
+var delayStart = 5000;
 var delay = 5000;
 var altDelay = 50;
 var fadeTime = 3000;
