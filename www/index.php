@@ -28,7 +28,7 @@
             if(isset($_GET["go"])) {
                 switch ($_GET["go"]) {
                     case "steam":
-                        header("Location: http://steamcommunity.com/groups/Rainbow-Squadron");
+                        header("Location: http://steamcommunity.com/groups/rbwsquad");
                         break;
                     case "gta":
                         header("Location: https://socialclub.rockstargames.com/crew/the_rainbow_squadron");
